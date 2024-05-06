@@ -19,7 +19,7 @@ class User extends StatelessWidget {
         fullname: ' ',
         address: ' ',
         mobileNumber: 1234567890,
-        imagePath: 'assets/images/Logo_withBG.jpg', // Path to your image
+        imagePath: 'assets/images/Logo_withBG.jpg',
       ),
     );
   }

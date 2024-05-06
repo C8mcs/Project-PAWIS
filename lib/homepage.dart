@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Homepage(
-        username: 'example_username',
+        username: '',
         imagePath: 'assets/images/Logo_noBG.png',
         points: 0.0,
       ),
