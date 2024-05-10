@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "447923567655",
+    "project_id": "project-pawis",
+    "storage_bucket": "project-pawis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447923567655:android:384343af12b83cd2ac2202",
+        "android_client_info": {
+          "package_name": "com.example.pawis_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHxD45EKLYHOZM7BVQ7iHyyvBe1wHZ3s0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
