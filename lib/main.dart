@@ -6,8 +6,9 @@ import 'splash_screen_page.dart';
 import 'login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() async {
+Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -41,3 +42,13 @@ class MainApp extends StatelessWidget {
     );
   }
 }
+
+// void _firebase_auth() {
+//   FirebaseAuth.instance.authStateChanges().listen((User? user) {
+//     if (user == null) {
+//       return Login();
+//     } else {
+//       return RegistrationPage();
+//     }
+//   });
+// }
