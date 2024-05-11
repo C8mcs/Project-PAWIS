@@ -6,8 +6,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyForm(),
+    return const Scaffold(
+      body: MyForm(),
     );
   }
 }
@@ -26,6 +26,8 @@ class _MyFormState extends State<MyForm> {
     setState(() {
       submitted = true;
     });
+
+    Navigator.pushNamed(context, '/homepage');
   }
 
   @override
