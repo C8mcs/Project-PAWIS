@@ -5,8 +5,8 @@ class RegistrationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyForm(),
+    return Scaffold(
+      body: MyForm(),
     );
   }
 }
@@ -25,6 +25,8 @@ class _MyFormState extends State<MyForm> {
     setState(() {
       submitted = true;
     });
+
+    Navigator.pushNamed(context, '/homepage');
   }
 
   @override

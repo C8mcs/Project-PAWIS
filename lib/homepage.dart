@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-//remove once connected
-void main() {
-  runApp(MyApp());
-}
+import 'package:flutter/widgets.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -41,7 +37,6 @@ class Homepage extends StatelessWidget {
               leading: Icon(Icons.person_rounded),
               title: Text('Edit Profile'),
               onTap: () {
-                // open edit user profile
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/edit_profile');
               },
@@ -50,8 +45,45 @@ class Homepage extends StatelessWidget {
               leading: Icon(Icons.logout),
               title: Text('Logout'),
               onTap: () {
-                Navigator.pop(context);
-                //logout user
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      backgroundColor: Color.fromRGBO(0x6A, 0xAD, 0x24, 1.0),
+                      title: Text(
+                        "Confirm Logout",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      content: Text(
+                        "Are you sure you want to logout?",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      actions: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: Color.fromRGBO(68, 122, 43, 1),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("Cancel"),
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            backgroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, '/login_page');
+                          },
+                          child: Text("Logout"),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
           ],
@@ -125,10 +157,10 @@ class Homepage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 90,
+                    height: 99,
                     width: 125,
                     decoration: const BoxDecoration(
-                      color: Color.fromRGBO(68, 122, 43, 1),
+                      color: Color.fromRGBO(0x6A, 0xAD, 0x24, 1.0),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
@@ -164,7 +196,7 @@ class Homepage extends StatelessWidget {
                     height: 90,
                     width: 125,
                     decoration: const BoxDecoration(
-                      color: Color.fromRGBO(68, 122, 43, 1),
+                      color: Color.fromRGBO(0x6A, 0xAD, 0x24, 1.0),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   )

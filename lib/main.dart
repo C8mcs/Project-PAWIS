@@ -25,11 +25,11 @@ class MainApp extends StatelessWidget {
               points: 102, // update points),
             ),
         '/edit_profile': (context) => EditProfile(
-              fullname: '',
-              username: '',
-              address: '',
-              mobileNumber: null,
-              imagePath: null,
+              username: '', //temp
+              fullname: ' ', //temp
+              address: ' ', //temp
+              mobileNumber: 1234567890, //temp
+              imagePath: 'assets/images/Logo_withBG.jpg', //temp
             ),
         '/registration_page': (context) => RegistrationPage(),
       },

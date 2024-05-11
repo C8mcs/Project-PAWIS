@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-//remove once connected
-void main() {
-  runApp(User());
-}
-
 class User extends StatelessWidget {
+  const User({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Edit Profile Demo',
+      title: 'Edit Profile',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
       home: EditProfile(
-        username: '',
-        fullname: ' ',
-        address: ' ',
-        mobileNumber: 1234567890,
-        imagePath: 'assets/images/Logo_withBG.jpg',
+        username: '', //temp
+        fullname: ' ', //temp
+        address: ' ', //temp
+        mobileNumber: 1234567890, //temp
+        imagePath: 'assets/images/Logo_withBG.jpg', //temp
       ),
     );
   }
@@ -51,19 +48,18 @@ class _EditProfileState extends State<EditProfile> {
   String _editedMobileNumber = '';
   String? _newImagePath;
 
-  @override
-  void initState() {
-    super.initState();
-    _editedUsername = widget.username;
-    _editedFullname = widget.fullname;
-    _editedAddress = widget.address;
-    _editedMobileNumber = widget.mobileNumber.toString();
-    _newImagePath = widget.imagePath;
-  }
-
   void _saveChanges() {
-    print(
-        'Changes saved: Username: $_editedUsername, Fullname: $_editedFullname, Address: $_editedAddress, Mobile Number: $_editedMobileNumber, New Image Path: $_newImagePath');
+    setState(() {
+      _editedUsername = _editedUsername;
+      _editedFullname = _editedFullname;
+      _editedAddress = _editedAddress;
+      _editedMobileNumber = _editedMobileNumber;
+      _newImagePath = _newImagePath;
+    });
+
+    print('Changes saved');
+
+    Navigator.pop(context);
   }
 
   Future<void> _pickImage() async {
