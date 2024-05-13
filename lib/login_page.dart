@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'registration_page.dart';
+import '../services/auth.dart';
 
 final _formKey = GlobalKey<FormState>();
 
 class LoginPage extends StatelessWidget {
-  void navPush(context) {
-    print("navPush");
-    Navigator.pushNamed(context, '/homepage');
-  }
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -25,12 +21,28 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   bool submitted = false;
   final controller = TextEditingController();
+  final AuthService _auth = AuthService();
 
-  void _handleSubmit(context) {
+  // text field state
+  String email = '';
+  String password = '';
+  String errorMessage = '';
+
+  void _handleSubmit(context) async {
     setState(() {
       submitted = true;
     });
-    Navigator.pushNamed(context, '/homepage');
+    dynamic result = await _auth.signInWithCredentials(email, password);
+    print(result);
+    if (result == null) {
+      setState(() {
+        print("error error");
+        submitted = false;
+        errorMessage = 'Email and password do not match';
+      });
+    } else {
+      Navigator.pushNamed(context, '/homepage');
+    }
   }
 
   @override
@@ -87,16 +99,20 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                           SizedBox(height: 20),
                           TextFormField(
-                            decoration: const InputDecoration(
-                                labelText: "Email",
-                                hintText: "Enter your email address",
-                                icon: Icon(Icons.email_outlined)),
-                            validator: (value) {
-                              if (value?.trim().isEmpty ?? false) {
-                                return "Email required";
-                              }
-                            },
-                          ),
+                              decoration: const InputDecoration(
+                                  labelText: "Email",
+                                  hintText: "Enter your email address",
+                                  icon: Icon(Icons.email_outlined)),
+                              validator: (value) {
+                                if (value?.trim().isEmpty ?? false) {
+                                  return "Email required";
+                                }
+                              },
+                              onChanged: (value) {
+                                setState(() {
+                                  email = value;
+                                });
+                              }),
                           const SizedBox(height: 30),
                           TextFormField(
                               obscureText: true,
@@ -108,6 +124,11 @@ class _LoginFormState extends State<LoginForm> {
                                 if (value?.trim().isEmpty ?? false) {
                                   return "Password required";
                                 }
+                              },
+                              onChanged: (value) {
+                                setState(() {
+                                  password = value;
+                                });
                               }),
                           SizedBox(height: 40),
                           ElevatedButton(
@@ -120,12 +141,20 @@ class _LoginFormState extends State<LoginForm> {
                               ),
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  print(submitted);
                                   _handleSubmit(context);
                                 }
                               },
                               child: Text(submitted ? "Success" : "Login")),
-                          SizedBox(height: 45),
+                          SizedBox(height: 15),
+                          Text(
+                            errorMessage,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.red,
+                            ),
+                          ),
+                          SizedBox(height: 30),
                           Text(
                             "Forgot Password?",
                             textAlign: TextAlign.center,

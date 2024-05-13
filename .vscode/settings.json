@@ -2,5 +2,6 @@
     "editor.formatOnType": true,
     "[commonlisp]": {
         "editor.wordSeparators": "`|;:'\",()"
-    }
+    },
+    "cmake.sourceDirectory": "C:/xampp/htdocs/GitHub/Project-PAWIS/build/windows/x64/extracted/firebase_cpp_sdk_windows"
 }
