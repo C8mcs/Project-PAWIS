@@ -194,6 +194,9 @@ class _Registration_FormState extends State<Registration_Form> {
                                 if (value?.trim().isEmpty ?? false) {
                                   return "Repeat password required";
                                 }
+                                if (value != password) {
+                                  return "Password and repeated password doesn't match";
+                                }
                               },
                               onChanged: (value) {
                                 setState(() {
