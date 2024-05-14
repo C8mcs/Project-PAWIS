@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pawis_application/services/database.dart';
 import '../models/userModel.dart';
 
 class AuthService {
@@ -14,6 +15,7 @@ class AuthService {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
+  // sign in
   Future signInWithCredentials(String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
@@ -25,9 +27,26 @@ class AuthService {
       return null;
     }
   }
-  // sign in
 
   // register with email and pw
+  Future registerWithCredentials(String email, String password, String fullname,
+      String address, String phoneNumber) async {
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      User? user = result.user;
+
+      // create user documents inthe database with the uid
+      await DatabaseService(uid: user!.uid)
+          .updateUserData(fullname, address, phoneNumber);
+      await DatabaseService(uid: user.uid).updateUserPoints(0);
+
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   // sign in with google
 

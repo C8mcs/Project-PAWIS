@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'registration_page.dart';
 import '../services/auth.dart';
 
-final _formKey = GlobalKey<FormState>();
-
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,6 +20,7 @@ class _LoginFormState extends State<LoginForm> {
   bool submitted = false;
   final controller = TextEditingController();
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
   // text field state
   String email = '';
@@ -93,7 +92,7 @@ class _LoginFormState extends State<LoginForm> {
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               fontSize: 20,
-                              color: Colors.black,
+                              color: Color.fromRGBO(76, 52, 14, 1),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -180,17 +179,13 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegistrationPage()),
-                          );
+                          Navigator.pushNamed(context, '/registration_page');
                         },
                         child: Text(
                           " Register here",
                           style: TextStyle(
                             fontSize: 15,
-                            color: Colors.black,
+                            color: Color.fromRGBO(76, 52, 14, 1),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
