@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pawis_application/services/auth.dart';
 import 'edit_profile.dart';
 import 'homepage.dart';
 import 'registration_page.dart';
@@ -9,6 +10,7 @@ import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'wrapper.dart';
 import 'package:provider/provider.dart';
+import './models/userModel.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,26 +26,25 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SplashScreen(),
-      routes: {
-        '/splash_screen_page': (context) => SplashScreen(),
-        '/login_page': (context) => LoginPage(),
-        '/homepage': (context) => Homepage(
-              username: 'Alice', //temp
-              imagePath: null, // temp
-              points: 102, // update points),
-            ),
-        '/edit_profile': (context) => EditProfile(
-              username: '', //temp
-              fullname: ' ', //temp
-              address: ' ', //temp
-              mobileNumber: 1234567890, //temp
-              imagePath: 'assets/images/Logo_withBG.jpg', //temp
-            ),
-        '/registration_page': (context) => RegistrationPage(),
-      },
-    );
+    return StreamProvider<UserModel?>.value(
+        value: AuthService().user,
+        initialData: null,
+        child: MaterialApp(
+          home: const SplashScreen(),
+          routes: {
+            '/splash_screen_page': (context) => const SplashScreen(),
+            '/login_page': (context) => LoginPage(),
+            '/homepage': (context) => Wrapper(),
+            '/edit_profile': (context) => EditProfile(
+                  username: '', //temp
+                  fullname: ' ', //temp
+                  address: ' ', //temp
+                  mobileNumber: 1234567890, //temp
+                  imagePath: 'assets/images/Logo_withBG.jpg', //temp
+                ),
+            '/registration_page': (context) => const RegistrationPage(),
+          },
+        ));
   }
 }
 

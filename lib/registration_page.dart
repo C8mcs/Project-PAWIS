@@ -87,7 +87,7 @@ class _Registration_FormState extends State<Registration_Form> {
                       // height: auto,
                       // width: 350,
                       decoration: const BoxDecoration(
-                        color: const Color.fromRGBO(106, 173, 36, 1.0),
+                        color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       ),
                       child: Column(
@@ -97,7 +97,7 @@ class _Registration_FormState extends State<Registration_Form> {
                             "Register",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 22,
                               color: Color.fromRGBO(76, 52, 14, 1),
                               fontWeight: FontWeight.bold,
                             ),
@@ -217,7 +217,13 @@ class _Registration_FormState extends State<Registration_Form> {
                                   _handleSubmit(context);
                                 }
                               },
-                              child: Text(submitted ? "Success" : "Register")),
+                              child: Text(
+                                submitted ? "Success" : "Register",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              )),
                           SizedBox(height: 15),
                           Text(
                             errorMessage,

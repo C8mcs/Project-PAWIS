@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'registration_page.dart';
 import '../services/auth.dart';
 
 class LoginPage extends StatelessWidget {
@@ -81,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
                       // height: auto,
                       // width: 350,
                       decoration: const BoxDecoration(
-                        color: const Color.fromRGBO(106, 173, 36, 1.0),
+                        color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       ),
                       child: Column(
@@ -91,7 +90,7 @@ class _LoginFormState extends State<LoginForm> {
                             "Login",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 22,
                               color: Color.fromRGBO(76, 52, 14, 1),
                               fontWeight: FontWeight.bold,
                             ),
@@ -143,7 +142,13 @@ class _LoginFormState extends State<LoginForm> {
                                   _handleSubmit(context);
                                 }
                               },
-                              child: Text(submitted ? "Success" : "Login")),
+                              child: Text(
+                                submitted ? "Success" : "Login",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              )),
                           SizedBox(height: 15),
                           Text(
                             errorMessage,
