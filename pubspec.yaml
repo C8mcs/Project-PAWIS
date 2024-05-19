@@ -1,10 +1,10 @@
 name: pawis_application
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   analytics: ^2.0.3
@@ -32,3 +32,7 @@ flutter:
   assets:
     - assets/images/Logo_noBG.png
     - assets/images/Logo_withBG.jpg
+    - assets/images/trolley.png
+    - assets/images/plug.png
+    - assets/images/medicine.png
+    - assets/images/save-water.png

@@ -58,21 +58,24 @@ class DatabaseService {
         .map(_userDetailsFromSnapshot);
   }
 
-  // userpoints list from snapshot
+  // ----------------------------------------------------
+
+  // user list from snapshot
   List<UserPointsModel> _userPointsListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       //print(doc.data);
       return UserPointsModel(
-        uid: uid,
         points: doc.get('points') ?? '',
       );
     }).toList();
   }
 
-  // userpoints from snapshots
+  // user data from snapshots
   UserPointsModel _userPointsFromSnapshot(DocumentSnapshot snapshot) {
     return UserPointsModel(
-      points: snapshot.get('points'),
+      uid: uid,
+      points: snapshot.get('points') ??
+          '0', // Provide a default value of '0' if 'points' is null
     );
   }
 
@@ -82,7 +85,7 @@ class DatabaseService {
   }
 
   // get user doc stream
-  Stream<UserPointsModel> get userPoints {
+  Stream<UserPointsModel> get userPointsData {
     return userPointsCollection
         .doc(uid)
         .snapshots()
